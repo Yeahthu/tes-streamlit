@@ -10,7 +10,7 @@ container = st.container()
 with container:
     st.markdown("""
         <div class="bagian-header">
-            <img src="logo fixx1.png" alt="logo" id="logo">
+            <img src="logo fixx1.png" alt="logo" id="logo" style="width:100%;">
         </div>
     """, unsafe_allow_html=True)
 
@@ -25,7 +25,7 @@ with container:
     st.markdown("""
         <div class="bagian-utama">
             <div class="sensor">
-                <img src="icon_pH.png" alt="icon_pH" id="icon_pH" />
+                <img src="icon_pH.png" alt="icon_pH" id="icon_pH" style="width:100%;" />
                 <h2>pH Air</h2>
                 <div class="bagian_ph">
                     <span class="value">7.0</span>
@@ -33,7 +33,7 @@ with container:
                 </div>
             </div>
             <div class="sensor">
-                <img src="icon_suhu_air.png" alt="icon_suhu" id="icon_suhu" /> 
+                <img src="icon_suhu_air.png" alt="icon_suhu" id="icon_suhu" style="width:100%;" /> 
                 <h2>Suhu Air</h2>
                 <div class="bagian_suhu">
                     <span class="value">22</span>
@@ -41,7 +41,7 @@ with container:
                 </div>
             </div>
             <div class="sensor">
-                <img src="icon_tds.png" alt="icon_nutrisi" id="icon_nutrisi" />
+                <img src="icon_tds.png" alt="icon_nutrisi" id="icon_nutrisi" style="width:100%;" />
                 <h2>Nutrisi</h2>
                 <div class="bagian_nutrisi">
                     <span class="value">100</span>
@@ -58,26 +58,8 @@ with container:
     """, unsafe_allow_html=True)
 
 # Create a section for the pH range slider
-with container:
-    st.markdown("""
-        <div class="bagian-akhir">
-            <div class="batas-ph">
-                <h1 class="batas-text">Batas ph</h1>
-                <input type="range" min="1" max="14" value="5" class="scrollbar-horizontal" id="myRange">
-                <div class="ph-labels">
-                    <div class="ph-label">Kadar rendah</div>
-                    <div class="ph-label">Kadar sesuai</div>
-                    <div class="ph-label">Kadar tinggi</div>
-                </div>
-                <div class="ph-labels">
-                    <div class="ph-label">[1-4]</div>
-                    <div class="ph-label">[5-7]</div>
-                    <div class="ph-label">[9-14]</div>
-                </div>
-                <p>pH tanamana mu: <span id="demo"></span></p>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+ph_value = st.slider('Batas pH', min_value=1, max_value=14, value=5)
+st.markdown(f"<p>pH tanamanan mu: <span>{ph_value}</span></p>", unsafe_allow_html=True)
 
 # Add some CSS to style the app
 st.write("""
@@ -149,7 +131,3 @@ st.write("""
         }
     </style>
 """)
-
-# Run the app
-if __name__ == "__main__":
-    pass
