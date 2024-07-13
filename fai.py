@@ -105,4 +105,51 @@ st.write("""
             border-radius: 10px 10px 0 0;
             border-bottom: 2px solid #eb0e0e;
             margin : 0;
-            padding:10
+            padding:10;
+                    }
+       .bagian-utama{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+       .sensor{
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            width: 250px;
+        }
+       .bagian-ph, .bagian_suhu, .bagian_nutrisi{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+       .value{
+            font-size: 24px;
+            font-weight: bold;
+        }
+       .unit{
+            font-size: 18px;
+        }
+       .batas-ph{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+       .ph-labels{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+       .ph-label{
+            font-size: 18px;
+        }
+    </style>
+""")
+
+# Run the app
+if __name__ == "__main__":
+    st.run()
