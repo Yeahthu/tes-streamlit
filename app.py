@@ -212,11 +212,11 @@ def main():
             var output = document.getElementById("demo");
             output.innerHTML = slider.value;
 
-            slider.oninput = function() {
+            slider.oninput = function() {{
               output.innerHTML = this.value;
-            }
+            }}
         </script>
     """.format(logo_image=load_image("logo fixx1.png"), icon_ph=load_image("icon_pH.png"), icon_suhu=load_image("icon_suhu_air.png"), icon_nutrisi=load_image("icon_tds.png")), unsafe_allow_html=True)
 
-
+if __name__ == "__main__":
     main()
