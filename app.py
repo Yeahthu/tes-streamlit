@@ -1,13 +1,3 @@
-Untuk membuat aplikasi Streamlit menampilkan konten HTML dan CSS yang telah Anda buat, ada beberapa hal yang perlu diperhatikan. Berikut adalah versi yang telah diperbaiki dari kode Anda agar aplikasi dapat menampilkan konten dengan benar di Streamlit.
-
-1. **Menambahkan Streamlit Elements**: Untuk memastikan semua elemen HTML dan CSS diterapkan dengan benar.
-2. **Menggunakan `base64` untuk gambar**: Streamlit tidak dapat langsung menampilkan gambar lokal dengan `src`, Anda perlu mengubah gambar menjadi format `base64`.
-3. **Perbaikan dan penyesuaian lainnya**.
-
-Berikut adalah versi yang diperbaiki dari kode Anda:
-
-### 1. `app.py`
-```python
 import streamlit as st
 import base64
 
@@ -226,4 +216,7 @@ def main():
               output.innerHTML = this.value;
             }
         </script>
-    """.format(logo_image=load_image("logo fixx1.png"), icon_ph=load_image("icon_pH.png"), icon_suhu=load_image("icon_suhu_air
+    """.format(logo_image=load_image("logo fixx1.png"), icon_ph=load_image("icon_pH.png"), icon_suhu=load_image("icon_suhu_air.png"), icon_nutrisi=load_image("icon_tds.png")), unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
