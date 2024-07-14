@@ -20,20 +20,22 @@ def main():
     st.image(icon_ph, caption='Icon pH', width=50)
     st.image(icon_suhu, caption='Icon Suhu', width=50)
     st.image(icon_nutrisi, caption='Icon Nutrisi', width=50)
+    desain = """
+         <style>
+              body {
+                 font-family: sans-serif;
+                 margin: 0;
+                 padding: 0;
+                 background-color: #ffffff;
+         }"""
 
 if __name__ == "__main__":
     main()
 
-#     # CSS styles
-#     st.markdown("""
-#         <style>
-#             body {
-#                 font-family: sans-serif;
-#                 margin: 0;
-#                 padding: 0;
-#                 background-color: #ffffff;
-#             }
-#             #Tampilan {
+#      CSS styles
+#     st.markdown(
+
+             # Tampilan {
 #                 position: relative;
 #                 width: 50%;
 #                 margin: 10px auto;
@@ -164,6 +166,7 @@ if __name__ == "__main__":
 #             }
 #         </style>
 #     """, unsafe_allow_html=True)
+
 
 #     # Render HTML content
 #     st.markdown("""
