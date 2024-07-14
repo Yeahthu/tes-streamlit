@@ -1,5 +1,4 @@
 import streamlit as st
-import base64
 from PIL import Image
 
 def load_image(image_path):
@@ -15,12 +14,15 @@ def main():
     icon_suhu = load_image("icon_suhu_air.png")
     icon_nutrisi = load_image("icon_tds.png")
 
-    # Render images using st.image 
+    # Render images using st.image
     st.image(bg_image, caption='Background Image', use_column_width=True)
     st.image(logo_image, caption='Logo', width=100)
     st.image(icon_ph, caption='Icon pH', width=50)
     st.image(icon_suhu, caption='Icon Suhu', width=50)
     st.image(icon_nutrisi, caption='Icon Nutrisi', width=50)
+
+if __name__ == "__main__":
+    main()
 
 #     # CSS styles
 #     st.markdown("""
