@@ -28,6 +28,7 @@ def main():
                  padding: 0;
                  background-color: #ffffff;
          }"""
+    st.markdown(desain,unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
