@@ -1,24 +1,37 @@
 import streamlit as st
 import base64
+from PIL import Image
 
 def load_image(image_path):
-    with open(image_path, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode()
-    return encoded_string
+    return Image.open(image_path)
 
 def main():
     st.set_page_config(page_title='Smart Hidroponik', layout='wide')
     
+    # Load images
+    bg_image = load_image("bgHidroponik.jpg")
+    logo_image = load_image("logo fixx1.png")
+    icon_ph = load_image("icon_pH.png")
+    icon_suhu = load_image("icon_suhu_air.png")
+    icon_nutrisi = load_image("icon_tds.png")
+
+    # Render images using st.image
+    st.image(bg_image, caption='Background Image', use_column_width=True)
+    st.image(logo_image, caption='Logo', width=100)
+    st.image(icon_ph, caption='Icon pH', width=50)
+    st.image(icon_suhu, caption='Icon Suhu', width=50)
+    st.image(icon_nutrisi, caption='Icon Nutrisi', width=50)
+
     # CSS styles
     st.markdown("""
         <style>
-            body {{
+            body {
                 font-family: sans-serif;
                 margin: 0;
                 padding: 0;
                 background-color: #ffffff;
-            }}
-            #Tampilan {{
+            }
+            #Tampilan {
                 position: relative;
                 width: 50%;
                 margin: 10px auto;
@@ -29,9 +42,8 @@ def main():
                             rgba(0, 0, 0, 0.12) 0px 4px 6px,
                             rgba(0, 0, 0, 0.17) 0px 12px 13px, 
                             rgba(0, 0, 0, 0.09) 0px -3px 5px;
-            }}
-            .bagian-header {{
-                background-image: url('data:image/jpeg;base64,{bg_image}');
+            }
+            .bagian-header {
                 border-radius: 10px 10px 0 0;
                 border-bottom: 2px solid #eb0e0e;
                 margin: 0;
@@ -42,12 +54,12 @@ def main():
                 background-position: center;
                 text-align: center;
                 height: 120px;
-            }}
-            #logo {{
+            }
+            #logo {
                 width: 15%;
                 border-radius: 30px;
-            }}
-            .bagian-utama {{
+            }
+            .bagian-utama {
                 margin: 8px;
                 padding: 10px;
                 display: flex;
@@ -55,69 +67,69 @@ def main():
                 justify-content: space-between;
                 gap: 10px;
                 flex-direction: row;
-            }}
-            .judul-overview {{
+            }
+            .judul-overview {
                 font-size: 24px;
                 font-weight: bold;
                 width: 100%;
                 text-align: center;
                 margin: 20px;
-            }}
-            #icon_pH, #icon_suhu, #icon_nutrisi {{
+            }
+            #icon_pH, #icon_suhu, #icon_nutrisi {
                 width: 25%;
-            }}
-            .bagian_ph, .bagian_suhu, .bagian_nutrisi {{
+            }
+            .bagian_ph, .bagian_suhu, .bagian_nutrisi {
                 font-size: 24px;
                 font-weight: bold;
                 margin: 10px;
-            }}
-            .unit {{
+            }
+            .unit {
                 font-size: 12px;
                 color: #eb0e0e;
                 vertical-align: middle;
-            }}
-            .value {{
+            }
+            .value {
                 color: rgb(0, 255, 30);
-            }}
-            .bagian-akhir {{
+            }
+            .bagian-akhir {
                 margin: 20px;
                 padding: 15px;
                 height: 20%;
                 background-color: #ffffff;
-            }}
-            .status-hidroponik {{
+            }
+            .status-hidroponik {
                 font-size: 24px;
                 font-weight: bold;
                 width: 100%;
                 text-align: left;
                 margin: 20px;
-            }}
-            .batas-text {{
+            }
+            .batas-text {
                 font-family: 'Courier New', Courier, monospace;
                 font-size: 20px;
                 text-align: left;
                 margin: 0px;
-            }}
-            .batas-ph {{
+            }
+            .batas-ph {
                 width: 100%;
                 border-radius: 20px;
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                 background-color: antiquewhite;
-            }}
-            .scrollbar-horizontal {{
+            }
+            .scrollbar-horizontal {
                 width: 100%;
                 height: 10px;
                 margin: 0px;
-            }}
-            input[type=range] {{
+            }
+            input[type=range] {
                 -webkit-appearance: none;
                 width: 100%;
                 margin: 30px 0;
-            }}
-            input[type=range]:focus {{
+            }
+            input[type=range]:focus {
                 outline: none;
-            }}
-            input[type=range]::-webkit-slider-runnable-track {{
+            }
+            input[type=range]::-webkit-slider-runnable-track {
                 width: 100%;
                 height: 8.4px;
                 cursor: pointer;
@@ -127,31 +139,29 @@ def main():
                                 red 0%, rgb(255, 149, 0) 20%, 
                                 rgb(36, 249, 3) 30%, rgb(2, 82, 2) 50%, 
                                 rgb(45, 1, 76) 80%, purple 100%);
-            }}
-            input[type=range]::-webkit-slider-thumb {{
+            }
+            input[type=range]::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 height: 20px;
                 width: 20px;
                 border-radius: 50%;
                 background-color: transparent;
-                background-image: url('data:image/png;base64,{thumb_image}');
-                background-size: cover;
                 cursor: pointer;
                 box-shadow: 0 0 2px rgba(0,0,0,0.3);
                 margin-top: -18px;
-            }}
-            .ph-labels {{
+            }
+            .ph-labels {
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 10px;
                 font-size: 14px;
-            }}
-            .ph-label {{
+            }
+            .ph-label {
                 width: 33.33%;
                 text-align: center;
-            }}
+            }
         </style>
-    """.format(bg_image=load_image("bgHidroponik.jpg"), thumb_image=load_image("kursor.png")), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
     # Render HTML content
     st.markdown("""
@@ -212,11 +222,11 @@ def main():
             var output = document.getElementById("demo");
             output.innerHTML = slider.value;
 
-            slider.oninput = function() {{
+            slider.oninput = function() {
               output.innerHTML = this.value;
-            }}
+            }
         </script>
-    """.format(logo_image=load_image("logo fixx1.png"), icon_ph=load_image("icon_pH.png"), icon_suhu=load_image("icon_suhu_air.png"), icon_nutrisi=load_image("icon_tds.png")), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
