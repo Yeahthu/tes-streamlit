@@ -172,9 +172,7 @@ def main():
     """
     st.markdown(desain_css, unsafe_allow_html=True)    
     # HTML content
-    html_content = 
-    f"""
-        <div id="Tampilan" data-testid="main-container">
+    html_content = f"""<div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
                 <img src="{logo_url}" alt="logo" id="logo" data-testid="logo">
             </div>
