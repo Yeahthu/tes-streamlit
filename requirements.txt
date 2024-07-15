@@ -3,5 +3,4 @@ Pillow
 flask
 pymongo
 datetime
-threading
 requests
