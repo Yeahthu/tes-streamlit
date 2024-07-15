@@ -8,11 +8,7 @@ def main():
     st.set_page_config(page_title='Smart Hidroponik', layout='wide')
     
     # Load images
-    bg_image = load_image("bgHidroponik.jpg")
-    logo_image = load_image("logo fixx1.png")
-    icon_ph = load_image("icon_pH.png")
-    icon_suhu = load_image("icon_suhu_air.png")
-    icon_nutrisi = load_image("icon_tds.png")
+ 
 
     # # Render images using st.image
     # st.image(bg_image, caption='Background Image', use_column_width=True)
@@ -43,7 +39,7 @@ def main():
                              rgba(0, 0, 0, 0.09) 0px -3px 5px;
               }
               .bagian-header {
-                 background-image: url(""data:image/png;base64,{bg_image}"");
+                 background-image: url("bgHidroponik.jpg");
                  border-radius: 10px 10px 0 0;
                  border-bottom: 2px solid #eb0e0e;
                  margin: 0;
@@ -176,7 +172,7 @@ def main():
     st.markdown("""
         <div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
-                <img src="data:image/png;base64,{logo_image}" alt="logo" id="logo" data-testid="logo">
+                <img src="logo fixx1.png" alt="logo" id="logo" data-testid="logo">
             </div>
             <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
             <div class="bagian-utama" data-testid="main-content">
