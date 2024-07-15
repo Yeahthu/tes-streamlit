@@ -12,6 +12,18 @@ def streamlit_app():
     db = client['Smart_Hidroponik']
     collection = db['Sensor']
 
+        flask_url = "http://192.168.1.22:5000/sensor"
+
+    try:
+        response = requests.get(flask_url)
+        if response.status_code == 200:
+            data = response.json()
+            latest_data = data[-1] if data else None
+            st.write("Data terbaru:", latest_data)
+        else:
+            st.error("Gagal mendapatkan data dari server Flask")
+    except requests.exceptions.ConnectionError as e:
+        st.error(f"Terjadi kesalahan dalam menghubungi server Flask: {e}")
     # Ambil data dari MongoDB
     data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
     latest_data = data[-1] if data else None
