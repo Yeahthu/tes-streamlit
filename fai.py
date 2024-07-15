@@ -10,9 +10,9 @@ def main():
     # Load images
     logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
     bg_image_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/bgHidroponik.jpg"
-    icon_ph_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_ph.png"
-    icon_suhu_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_suhu.png"
-    icon_nutrisi_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_nutrisi.png"
+    icon_ph_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_pH.png"
+    icon_suhu_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_suhu_air.png"
+    icon_nutrisi_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_tds.png"
     
     # Render images using st.image
     st.image(bg_image_url, caption='Background Image', use_column_width=True)
