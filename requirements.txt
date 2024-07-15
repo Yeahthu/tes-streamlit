@@ -2,3 +2,4 @@ streamlit
 Pillow
 pymongo
 datetime
+flask
