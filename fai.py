@@ -11,7 +11,7 @@ def streamlit_app():
     st.set_page_config(page_title='Smart Hidroponik', layout='wide')
 
     # URL untuk API Flask
-    flask_url = "http://localhost:5000/data_sensor"
+    flask_url = "http://192.168.1.14:5000/sensor"
 
     # Ambil data dari Flask
     response = requests.get(flask_url)
