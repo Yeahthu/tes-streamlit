@@ -170,25 +170,10 @@ def main():
               }
          </style>
     """
-    st.markdown(desain_css, unsafe_allow_html=True)
-    
-    # HTML content with data-testid
-    import streamlit as st
-
-def main():
-    st.set_page_config(page_title='Smart Hidroponik', layout='wide')
-    
-    # URL gambar dari GitHub (raw URL)
-    logo_url = "https://github.com/Yeahthu/tes-streamlit/raw/main/logo%20fixx1.png"
-    icon_ph_url = "data:image/png;base64,YourBase64EncodedImageStringForIconPH"
-    icon_suhu_url = "data:image/png;base64,YourBase64EncodedImageStringForIconSuhu"
-    icon_nutrisi_url = "data:image/png;base64,YourBase64EncodedImageStringForIconNutrisi"
-    
-
-    st.markdown(desain_css, unsafe_allow_html=True)
-    
+    st.markdown(desain_css, unsafe_allow_html=True)    
     # HTML content
-    html_content = f"""
+    html_content = 
+    f"""
         <div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
                 <img src="{logo_url}" alt="logo" id="logo" data-testid="logo">
@@ -248,11 +233,8 @@ def main():
                 output.innerHTML = this.value;
             }} 
         </script>
-    """
+        """
     st.markdown(html_content, unsafe_allow_html=True)
-
-
-
 
 if __name__ == "__main__":
     main()
