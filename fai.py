@@ -26,8 +26,10 @@ def streamlit_app():
     # Ambil data dari MongoDB
     # data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
     # latest_data = data[-1] if data else None
-    latest_data = collection.find_one({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}, sort=[('timestamp', -1)])
-
+   # latest_data = collection.find_one({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}, sort=[('timestamp', -1)])
+    latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(1)
+    
+    latest_data = list(latest_data_cursor)[0] if latest_data_cursor.count() > 0 else {}
     # Load images
     logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
     icon_ph_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_pH.png"
