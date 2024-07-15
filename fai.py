@@ -24,8 +24,9 @@ def streamlit_app():
     # except requests.exceptions.ConnectionError as e:
     #     st.error(f"Terjadi kesalahan dalam menghubungi server Flask p: {e}")
     # Ambil data dari MongoDB
-    data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
-    latest_data = data[-1] if data else None
+    # data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
+    # latest_data = data[-1] if data else None
+     latest_data = collection.find_one({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}, sort=[('timestamp', -1)])
 
     # Load images
     logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
