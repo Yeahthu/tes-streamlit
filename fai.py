@@ -172,7 +172,7 @@ def main():
     st.markdown("""
         <div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
-                <img src="logo fixx1.png" alt="logo" id="logo" data-testid="logo">
+                <img src="https://github.com/Yeahthu/tes-streamlit/blob/main/bgHidroponik.jpg" alt="logo" id="logo" data-testid="logo">
             </div>
             <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
             <div class="bagian-utama" data-testid="main-content">
