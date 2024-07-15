@@ -12,7 +12,7 @@ def streamlit_app():
     client = MongoClient('mongodb+srv://SmartHidroponik:MERA_X@smarthidroponik.hdetbis.mongodb.net/?retryWrites=true&w=majority&appName=SmartHidroponik')
     db = client['Smart_Hidroponik']
     collection = db['Sensor']
-    flask_url = "http://192.168.1.22:5000/sensor"
+    flask_url = "http://192.168.1.22:5000"
     try:
         response = requests.get(flask_url)
         if response.status_code == 200:
