@@ -1,26 +1,20 @@
 import streamlit as st
 from PIL import Image
-from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime as dt
-from threading import Thread
-import requests
 
 # Fungsi Streamlit
 def streamlit_app():
     st.set_page_config(page_title='Smart Hidroponik', layout='wide')
 
-    # URL untuk API Flask
-    flask_url = "http://192.168.1.14:5000/sensor"
+    # Koneksi ke MongoDB
+    client = MongoClient('mongodb+srv://SmartHidroponik:MERA_X@smarthidroponik.hdetbis.mongodb.net/?retryWrites=true&w=majority&appName=SmartHidroponik')
+    db = client['Smart_Hidroponik']
+    collection = db['Sensor']
 
-    # Ambil data dari Flask
-    response = requests.get(flask_url)
-    if response.status_code == 200:
-        data = response.json()
-        latest_data = data[-1] if data else None
-    else:
-        st.error("Gagal mendapatkan data dari server Flask")
-        latest_data = None
+    # Ambil data dari MongoDB
+    data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
+    latest_data = data[-1] if data else None
 
     # Load images
     logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
@@ -251,26 +245,6 @@ def streamlit_app():
         """
     st.markdown(html_content, unsafe_allow_html=True)
 
-# Fungsi Flask
-app = Flask(__name__)
-
-# Koneksi ke MongoDB
-client = MongoClient('mongodb+srv://SmartHidroponik:MERA_X@smarthidroponik.hdetbis.mongodb.net/?retryWrites=true&w=majority&appName=SmartHidroponik')
-db = client['Smart_Hidroponik']
-collection = db['Sensor']
-
-@app.route('/data_sensor', methods=['GET'])
-def get_data_sensor():
-    data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
-    return jsonify(data)
-
-# Fungsi untuk menjalankan Flask di thread terpisah
-def run_flask():
-    app.run(host='0.0.0.0', port=5000)
-
 if __name__ == "__main__":
-    # Jalankan Flask di thread terpisah
-    Thread(target=run_flask).start()
     # Jalankan Streamlit
     streamlit_app()
- 
