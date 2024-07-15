@@ -179,7 +179,6 @@ def main():
                 <img src="data:image/png;base64,{logo_image}" alt="logo" id="logo" data-testid="logo">
             </div>
             <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
-
             <div class="bagian-utama" data-testid="main-content">
                 <div class="sensor" data-testid="sensor-ph">
                     <img src="data:image/png;base64,{icon_ph}" alt="icon_pH" id="icon_pH" data-testid="icon-ph" />
