@@ -1,19 +1,33 @@
 import streamlit as st
 from PIL import Image
+from flask import Flask, request, jsonify
+from pymongo import MongoClient
+from datetime import datetime as dt
+from threading import Thread
+import requests
 
-def load_image(image_path):
-    return Image.open(image_path)
-
-def main():
+# Fungsi Streamlit
+def streamlit_app():
     st.set_page_config(page_title='Smart Hidroponik', layout='wide')
-    
+
+    # URL untuk API Flask
+    flask_url = "http://localhost:5000/data_sensor"
+
+    # Ambil data dari Flask
+    response = requests.get(flask_url)
+    if response.status_code == 200:
+        data = response.json()
+        latest_data = data[-1] if data else None
+    else:
+        st.error("Gagal mendapatkan data dari server Flask")
+        latest_data = None
+
     # Load images
     logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
-    bg_image_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/bgHidroponik.jpg"
     icon_ph_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_pH.png"
     icon_suhu_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_suhu_air.png"
     icon_nutrisi_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_tds.png"
-    
+
     # CSS custom
     desain_css = """
          <style>
@@ -163,7 +177,17 @@ def main():
               }
          </style>
     """
-    st.markdown(desain_css, unsafe_allow_html=True)    
+    st.markdown(desain_css, unsafe_allow_html=True)
+
+    if latest_data:
+        ph_value = latest_data.get('pH', 'N/A')
+        suhu_value = latest_data.get('suhu', 'N/A')
+        nutrisi_value = latest_data.get('tds', 'N/A')
+    else:
+        ph_value = 'N/A'
+        suhu_value = 'N/A'
+        nutrisi_value = 'N/A'
+
     # HTML content
     html_content = f"""<div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
@@ -175,7 +199,7 @@ def main():
                     <img src="{icon_ph_url}" alt="icon_pH" id="icon_pH" data-testid="icon-ph" />
                     <h2 class="custom-text">pH Air</h2>
                     <div class="bagian_ph custom-text">
-                        <span class="value">7.0</span>
+                        <span class="value">{ph_value}</span>
                         <span class="unit">pH</span>
                     </div>
                 </div>
@@ -183,7 +207,7 @@ def main():
                     <img src="{icon_suhu_url}" alt="icon_suhu" id="icon_suhu" data-testid="icon-suhu" /> 
                     <h2 class="custom-text">Suhu Air</h2>
                     <div class="bagian_suhu custom-text">
-                        <span class="value">22</span>
+                        <span class="value">{suhu_value}</span>
                         <span class="unit">°C</span>
                     </div>
                 </div>
@@ -191,7 +215,7 @@ def main():
                     <img src="{icon_nutrisi_url}" alt="icon_nutrisi" id="icon_nutrisi" data-testid="icon-nutrisi" />
                     <h2 class="custom-text">Nutrisi</h2>
                     <div class="bagian_nutrisi custom-text">
-                        <span class="value">100</span>
+                        <span class="value">{nutrisi_value}</span>
                         <span class="unit">ppm</span>
                     </div>
                 </div>
@@ -227,5 +251,26 @@ def main():
         """
     st.markdown(html_content, unsafe_allow_html=True)
 
+# Fungsi Flask
+app = Flask(__name__)
+
+# Koneksi ke MongoDB
+client = MongoClient('mongodb://localhost:27017/')
+db = client['hidroponik_db']
+collection = db['data_sensor']
+
+@app.route('/data_sensor', methods=['GET'])
+def get_data_sensor():
+    data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
+    return jsonify(data)
+
+# Fungsi untuk menjalankan Flask di thread terpisah
+def run_flask():
+    app.run(host='0.0.0.0', port=5000)
+
 if __name__ == "__main__":
-    main()
+    # Jalankan Flask di thread terpisah
+    Thread(target=run_flask).start()
+    # Jalankan Streamlit
+    streamlit_app()
+ 
