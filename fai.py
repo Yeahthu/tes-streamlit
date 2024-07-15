@@ -13,7 +13,7 @@ def streamlit_app():
     db = client['Smart_Hidroponik']
     collection = db['Sensor']
     flask_url = "http://192.168.1.22:5000/sensor"
-     try:
+    try:
         response = requests.get(flask_url)
         if response.status_code == 200:
             data = response.json()
