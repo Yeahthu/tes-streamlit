@@ -255,9 +255,9 @@ def streamlit_app():
 app = Flask(__name__)
 
 # Koneksi ke MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['hidroponik_db']
-collection = db['data_sensor']
+client = MongoClient('mongodb+srv://SmartHidroponik:MERA_X@smarthidroponik.hdetbis.mongodb.net/?retryWrites=true&w=majority&appName=SmartHidroponik')
+db = client['Smart_Hidroponik']
+collection = db['Sensor']
 
 @app.route('/data_sensor', methods=['GET'])
 def get_data_sensor():
