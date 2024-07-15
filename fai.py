@@ -176,7 +176,7 @@ def main():
     st.markdown("""
         <div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
-                <img src="data:image/png;base64,{logo_image}" alt="logo" id="logo" data-testid="logo">
+                <img src="logo fixx1.png" alt="logo" id="logo" data-testid="logo">
             </div>
             <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
             <div class="bagian-utama" data-testid="main-content">
