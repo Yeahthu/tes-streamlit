@@ -14,13 +14,6 @@ def main():
     icon_suhu_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_suhu_air.png"
     icon_nutrisi_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_tds.png"
     
-    # Render images using st.image
-    st.image(bg_image_url, caption='Background Image', use_column_width=True)
-    st.image(logo_url, caption='Logo', width=100)
-    st.image(icon_ph_url, caption='Icon pH', width=50)
-    st.image(icon_suhu_url, caption='Icon Suhu', width=50)
-    st.image(icon_nutrisi_url, caption='Icon Nutrisi', width=50)
-    
     # CSS custom
     desain_css = """
          <style>
