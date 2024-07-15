@@ -22,7 +22,7 @@ def streamlit_app():
         else:
             st.error("Gagal mendapatkan data dari server Flask")
     except requests.exceptions.ConnectionError as e:
-        st.error(f"Terjadi kesalahan dalam menghubungi server Flask: {e}")
+        st.error(f"Terjadi kesalahan dalam menghubungi server Flask p: {e}")
     # Ambil data dari MongoDB
     data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
     latest_data = data[-1] if data else None
