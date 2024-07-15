@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from pymongo import MongoClient
 from datetime import datetime as dt
+import requests
 
 # Fungsi Streamlit
 def streamlit_app():
@@ -11,10 +12,8 @@ def streamlit_app():
     client = MongoClient('mongodb+srv://SmartHidroponik:MERA_X@smarthidroponik.hdetbis.mongodb.net/?retryWrites=true&w=majority&appName=SmartHidroponik')
     db = client['Smart_Hidroponik']
     collection = db['Sensor']
-
     flask_url = "http://192.168.1.22:5000/sensor"
-
-    try:
+     try:
         response = requests.get(flask_url)
         if response.status_code == 200:
             data = response.json()
