@@ -27,10 +27,10 @@ def streamlit_app():
     # data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
     # latest_data = data[-1] if data else None
    # latest_data = collection.find_one({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}, sort=[('timestamp', -1)])
-    latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10)
+    latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', DESCENDING).limit(10)
     latest_data = list(latest_data_cursor)
     if latest_data:
-        latest_data = latest_data[-1]
+        latest_data = latest_data[0]
     else:
         latest_data = None
     
