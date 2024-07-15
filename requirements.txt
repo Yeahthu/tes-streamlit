@@ -3,5 +3,5 @@ Pillow
 flask
 pymongo
 datetime
-threading import Thread
+threading
 requests
