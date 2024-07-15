@@ -173,7 +173,22 @@ def main():
     st.markdown(desain_css, unsafe_allow_html=True)
     
     # HTML content with data-testid
-    st.markdown(f"""
+    import streamlit as st
+
+def main():
+    st.set_page_config(page_title='Smart Hidroponik', layout='wide')
+    
+    # URL gambar dari GitHub (raw URL)
+    logo_url = "https://github.com/Yeahthu/tes-streamlit/raw/main/logo%20fixx1.png"
+    icon_ph_url = "data:image/png;base64,YourBase64EncodedImageStringForIconPH"
+    icon_suhu_url = "data:image/png;base64,YourBase64EncodedImageStringForIconSuhu"
+    icon_nutrisi_url = "data:image/png;base64,YourBase64EncodedImageStringForIconNutrisi"
+    
+
+    st.markdown(desain_css, unsafe_allow_html=True)
+    
+    # HTML content
+    html_content = f"""
         <div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
                 <img src="{logo_url}" alt="logo" id="logo" data-testid="logo">
@@ -207,33 +222,37 @@ def main():
             </div>
             <h1 class="status-hidroponik custom-text" data-testid="status-title">Status hidroponik</h1>
             <div class="bagian-akhir" data-testid="footer">
-                <div class="batas-ph" data-testid="
-        <div class="batas-ph" data-testid="ph-boundary">
-            <h1 class="batas-text custom-text">Batas pH</h1>
-            <input type="range" min="1" max="14" value="5" class="scrollbar-horizontal" id="myRange" data-testid="ph-range">
-            <div class="ph-labels custom-text">
-                <div class="ph-label">Kadar rendah</div>
-                <div class="ph-label">Kadar sesuai</div>
-                <div class="ph-label">Kadar tinggi</div>
+                <div class="batas-ph" data-testid="ph-boundary">
+                    <h1 class="batas-text custom-text">Batas pH</h1>
+                    <input type="range" min="1" max="14" value="5" class="scrollbar-horizontal" id="myRange" data-testid="ph-range">
+                    <div class="ph-labels custom-text">
+                        <div class="ph-label">Kadar rendah</div>
+                        <div class="ph-label">Kadar sesuai</div>
+                        <div class="ph-label">Kadar tinggi</div>
+                    </div>
+                    <div class="ph-labels custom-text">
+                        <div class="ph-label">[1-4]</div>
+                        <div class="ph-label">[5-7]</div>
+                        <div class="ph-label">[9-14]</div>
+                    </div>
+                    <p class="custom-text">pH tanamanmu: <span id="demo">5</span></p>
+                </div>
             </div>
-            <div class="ph-labels custom-text">
-                <div class="ph-label">[1-4]</div>
-                <div class="ph-label">[5-7]</div>
-                <div class="ph-label">[9-14]</div>
-            </div>
-            <p class="custom-text">pH tanamanmu: <span id="demo">5</span></p>
         </div>
-    </div>
-</div>
-<script>
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    output.innerHTML = slider.value;
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-    }
-</script>
-    """, unsafe_allow_html=True)
+        <script>
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {{
+                output.innerHTML = this.value;
+            }} 
+        </script>
+    """
+    st.markdown(html_content, unsafe_allow_html=True)
+
+
+
 
 if __name__ == "__main__":
     main()
