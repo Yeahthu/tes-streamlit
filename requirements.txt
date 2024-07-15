@@ -1,6 +1,4 @@
 streamlit
 Pillow
-flask
 pymongo
 datetime
-requests
