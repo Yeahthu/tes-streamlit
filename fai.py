@@ -28,7 +28,11 @@ def streamlit_app():
     # latest_data = data[-1] if data else None
    # latest_data = collection.find_one({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}, sort=[('timestamp', -1)])
     latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(1)
-    latest_data = list(latest_data_cursor)[0] if latest_data_cursor.count() > 0 else None
+    latest_data = list(latest_data_cursor)
+    if latest_data:
+        latest_data = latest_data[0]
+    else:
+        latest_data = None
     
     # Load images
     logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
