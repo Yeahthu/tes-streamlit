@@ -1,3 +1,7 @@
 streamlit
 Pillow
 flask
+pymongo
+datetime
+threading import Thread
+requests
