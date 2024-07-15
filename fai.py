@@ -225,7 +225,6 @@ def main():
                 </div>
             </div>
         </div>
-
         <script>
             var slider = document.getElementById("myRange");
             var output = document.getElementById("demo");
