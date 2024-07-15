@@ -8,14 +8,18 @@ def main():
     st.set_page_config(page_title='Smart Hidroponik', layout='wide')
     
     # Load images
- 
-
-    # # Render images using st.image
-    # st.image(bg_image, caption='Background Image', use_column_width=True)
-    # st.image(logo_image, caption='Logo', width=100)
-    # st.image(icon_ph, caption='Icon pH', width=50)
-    # st.image(icon_suhu, caption='Icon Suhu', width=50)
-    # st.image(icon_nutrisi, caption='Icon Nutrisi', width=50)
+    logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
+    bg_image_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/bgHidroponik.jpg"
+    icon_ph_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_ph.png"
+    icon_suhu_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_suhu.png"
+    icon_nutrisi_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_nutrisi.png"
+    
+    # Render images using st.image
+    st.image(bg_image_url, caption='Background Image', use_column_width=True)
+    st.image(logo_url, caption='Logo', width=100)
+    st.image(icon_ph_url, caption='Icon pH', width=50)
+    st.image(icon_suhu_url, caption='Icon Suhu', width=50)
+    st.image(icon_nutrisi_url, caption='Icon Nutrisi', width=50)
     
     # CSS custom
     desain_css = """
@@ -39,7 +43,7 @@ def main():
                              rgba(0, 0, 0, 0.09) 0px -3px 5px;
               }
               .bagian-header {
-                 background-image: url("https://github.com/Yeahthu/tes-streamlit/blob/main/bgHidroponik.jpg");
+                 background-image: url("https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/bgHidroponik.jpg");
                  border-radius: 10px 10px 0 0;
                  border-bottom: 2px solid #eb0e0e;
                  margin: 0;
@@ -145,7 +149,7 @@ def main():
                  width: 20px;
                  border-radius: 50%;
                  background-color: transparent;
-                 background-image: url(kursor.png);
+                 background-image: url('https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/kursor.png');
                  background-size: cover;
                  cursor: pointer;
                  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -169,15 +173,15 @@ def main():
     st.markdown(desain_css, unsafe_allow_html=True)
     
     # HTML content with data-testid
-    st.markdown("""
+    st.markdown(f"""
         <div id="Tampilan" data-testid="main-container">
             <div class="bagian-header" data-testid="header">
-                <img src="https://github.com/Yeahthu/tes-streamlit/blob/main/bgHidroponik.jpg" alt="logo" id="logo" data-testid="logo">
+                <img src="{logo_url}" alt="logo" id="logo" data-testid="logo">
             </div>
             <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
             <div class="bagian-utama" data-testid="main-content">
                 <div class="sensor" data-testid="sensor-ph">
-                    <img src="data:image/png;base64,{icon_ph}" alt="icon_pH" id="icon_pH" data-testid="icon-ph" />
+                    <img src="{icon_ph_url}" alt="icon_pH" id="icon_pH" data-testid="icon-ph" />
                     <h2 class="custom-text">pH Air</h2>
                     <div class="bagian_ph custom-text">
                         <span class="value">7.0</span>
@@ -185,7 +189,7 @@ def main():
                     </div>
                 </div>
                 <div class="sensor" data-testid="sensor-suhu">
-                    <img src="data:image/png;base64,{icon_suhu}" alt="icon_suhu" id="icon_suhu" data-testid="icon-suhu" /> 
+                    <img src="{icon_suhu_url}" alt="icon_suhu" id="icon_suhu" data-testid="icon-suhu" /> 
                     <h2 class="custom-text">Suhu Air</h2>
                     <div class="bagian_suhu custom-text">
                         <span class="value">22</span>
@@ -193,7 +197,7 @@ def main():
                     </div>
                 </div>
                 <div class="sensor" data-testid="sensor-nutrisi">
-                    <img src="data:image/png;base64,{icon_nutrisi}" alt="icon_nutrisi" id="icon_nutrisi" data-testid="icon-nutrisi" />
+                    <img src="{icon_nutrisi_url}" alt="icon_nutrisi" id="icon_nutrisi" data-testid="icon-nutrisi" />
                     <h2 class="custom-text">Nutrisi</h2>
                     <div class="bagian_nutrisi custom-text">
                         <span class="value">100</span>
@@ -203,33 +207,33 @@ def main():
             </div>
             <h1 class="status-hidroponik custom-text" data-testid="status-title">Status hidroponik</h1>
             <div class="bagian-akhir" data-testid="footer">
-                <div class="batas-ph" data-testid="ph-boundary">
-                    <h1 class="batas-text custom-text">Batas pH</h1>
-                    <input type="range" min="1" max="14" value="5" class="scrollbar-horizontal" id="myRange" data-testid="ph-range">
-                    <div class="ph-labels custom-text
-                    <div class="ph-labels custom-text">
-                        <div class="ph-label">Kadar rendah</div>
-                        <div class="ph-label">Kadar sesuai</div>
-                        <div class="ph-label">Kadar tinggi</div>
-                    </div>
-                    <div class="ph-labels custom-text">
-                        <div class="ph-label">[1-4]</div>
-                        <div class="ph-label">[5-7]</div>
-                        <div class="ph-label">[9-14]</div>
-                    </div>
-                    <p class="custom-text">pH tanamanmu: <span id="demo">5</span></p>
-                </div>
+                <div class="batas-ph" data-testid="
+        <div class="batas-ph" data-testid="ph-boundary">
+            <h1 class="batas-text custom-text">Batas pH</h1>
+            <input type="range" min="1" max="14" value="5" class="scrollbar-horizontal" id="myRange" data-testid="ph-range">
+            <div class="ph-labels custom-text">
+                <div class="ph-label">Kadar rendah</div>
+                <div class="ph-label">Kadar sesuai</div>
+                <div class="ph-label">Kadar tinggi</div>
             </div>
+            <div class="ph-labels custom-text">
+                <div class="ph-label">[1-4]</div>
+                <div class="ph-label">[5-7]</div>
+                <div class="ph-label">[9-14]</div>
+            </div>
+            <p class="custom-text">pH tanamanmu: <span id="demo">5</span></p>
         </div>
-        <script>
-            var slider = document.getElementById("myRange");
-            var output = document.getElementById("demo");
-            output.innerHTML = slider.value;
+    </div>
+</div>
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
 
-            slider.oninput = function() {
-              output.innerHTML = this.value;
-            }
-        </script>
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+</script>
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
