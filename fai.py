@@ -39,7 +39,7 @@ def main():
                              rgba(0, 0, 0, 0.09) 0px -3px 5px;
               }
               .bagian-header {
-                 background-image: url("bgHidroponik.jpg");
+                 background-image: url("https://github.com/Yeahthu/tes-streamlit/blob/main/bgHidroponik.jpg");
                  border-radius: 10px 10px 0 0;
                  border-bottom: 2px solid #eb0e0e;
                  margin: 0;
