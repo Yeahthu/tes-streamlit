@@ -177,11 +177,19 @@ def streamlit_app():
                     </div>
                 </div>
                 <script>
-        setInterval(function() {{
-            var ph_value = {ph_value};
-            document.getElementById("demo").textContent = ph_value;
-        }}, 5000); 
-        </script>
+        async function fetchPhValue() {{
+            const response = await fetch('/get_ph_value');
+            const data = await response.json();
+            return data.ph_value;
+        }}
+
+        async function updateSlider() {{
+            const phValue = await fetchPhValue();
+            document.getElementById('demo').innerText = phValue;
+        }}
+
+        setInterval(updateSlider, 5000);
+                </script>
                 """
 
             st.markdown(html_content, unsafe_allow_html=True)
