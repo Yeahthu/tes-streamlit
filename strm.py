@@ -205,7 +205,8 @@
 def main():
     import streamlit as st
     
-    slider_style = """# Custom CSS for slider
+    slider_style = 
+    """
      <style>
             input[type="range"] {
                 -webkit-appearance: none;
