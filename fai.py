@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 from pymongo import MongoClient
 from datetime import datetime as dt
-import requests
+import time
 
 # Fungsi Streamlit
 def streamlit_app():
@@ -12,21 +12,7 @@ def streamlit_app():
     client = MongoClient('mongodb+srv://SmartHidroponik:MERA_X@smarthidroponik.hdetbis.mongodb.net/?retryWrites=true&w=majority&appName=SmartHidroponik')
     db = client['Smart_Hidroponik']
     collection = db['Sensor']
-    # flask_url = "http://192.168.1.22:5000"
-    # try:
-    #     response = requests.get(flask_url)
-    #     if response.status_code == 200:
-    #         data = response.json()
-    #         latest_data = data[-1] if data else None
-    #         st.write("Data terbaru:", latest_data)
-    #     else:
-    #         st.error("Gagal mendapatkan data dari server Flask")
-    # except requests.exceptions.ConnectionError as e:
-    #     st.error(f"Terjadi kesalahan dalam menghubungi server Flask p: {e}")
-    # Ambil data dari MongoDB
-    # data = list(collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('timestamp', -1).limit(10))
-    # latest_data = data[-1] if data else None
-   # latest_data = collection.find_one({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}, sort=[('timestamp', -1)])
+    
     latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1, 'suhu': 1, 'tds': 1, 'timestamp': 1}).sort('waktu',-1).limit(96)
     latest_data = list(latest_data_cursor)
     if latest_data:
@@ -143,36 +129,18 @@ def streamlit_app():
                  height: 10px;
                  margin: 0px;
               }
-              input[type=range] {
-                 -webkit-appearance: none;
-                 width: 100%;
-                 margin: 30px 0;
-              }
-              input[type=range]:focus {
-                 outline: none;
-              }
-              input[type=range]::-webkit-slider-runnable-track {
-                 width: 100%;
-                 height: 8.4px;
-                 cursor: pointer;
-                 border-radius: 10px;
-                 border: 0.2px solid #010101;
+              .stSlider .stSliderTrack, .stSlider .stSliderTrackValue, .stSlider .stSliderLabel {
                  background: linear-gradient(to right, 
                                red 0%, rgb(255, 149, 0) 20%,
                                rgb(36, 249, 3) 30%, rgb(2, 82, 2) 50%,
                                rgb(45, 1, 76) 80%, purple 100%);
+                 border-radius: 10px;
               }
-              input[type=range]::-webkit-slider-thumb {
-                 -webkit-appearance: none;
-                 height: 20px;
-                 width: 20px;
-                 border-radius: 50%;
-                 background-color: transparent;
-                 background-image: url('https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/kursor.png');
-                 background-size: cover;
-                 cursor: pointer;
-                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-                 margin-top: -18px;
+              .stSlider .stSliderTrackValue {
+                 background: none;
+              }
+              .stSlider .stSliderLabelValue {
+                 color: rgb(0, 255, 30);
               }
               .ph-labels {
                  display: flex;
@@ -236,7 +204,6 @@ def streamlit_app():
             <div class="bagian-akhir" data-testid="footer">
                 <div class="batas-ph" data-testid="ph-boundary">
                     <h1 class="batas-text custom-text">Batas pH</h1>
-                    <input type="range" min="1" max="14" value="5" class="scrollbar-horizontal" id="myRange" data-testid="ph-range">
                     <div class="ph-labels custom-text">
                         <div class="ph-label">Kadar rendah</div>
                         <div class="ph-label">Kadar sesuai</div>
@@ -245,23 +212,32 @@ def streamlit_app():
                     <div class="ph-labels custom-text">
                         <div class="ph-label">[1-4]</div>
                         <div class="ph-label">[5-7]</div>
-                        <div class="ph-label">[9-14]</div>
+                        <div class="ph-label">[8-14]</div>
                     </div>
-                    <p class="custom-text">pH tanamanmu: <span id="demo">5</span></p>
+                    <p class="custom-text">pH tanamanmu: <span id="demo">{ph_value}</span></p>
                 </div>
             </div>
-        </div>
-        <script>
-            var slider = document.getElementById("myRange");
-            var output = document.getElementById("demo");
-            output.innerHTML = slider.value;
-
-            slider.oninput = function() {{
-                output.innerHTML = this.value;
-            }} 
-        </script>
-        """
+        </div>"""
+        
     st.markdown(html_content, unsafe_allow_html=True)
+
+    # Membuat slider pH dengan Streamlit
+    st.subheader("pH tanamanmu")
+    if ph_value != 'N/A':
+        ph_value = st.slider(
+            'pH tanamanmu', 
+            min_value=1.0, 
+            max_value=14.0, 
+            value=float(ph_value), 
+            step=0.1, 
+            key='auto_slider', 
+            disabled=True
+        )
+    else:
+        st.write('Tidak ada data pH yang tersedia saat ini.')
+
+    # Delay sebelum mengambil data terbaru lagi
+    time.sleep(10) 
 
 if __name__ == "__main__":
     # Jalankan Streamlit
