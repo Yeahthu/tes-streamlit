@@ -143,7 +143,8 @@ def streamlit_app():
 
         if ph_value is not None:
             # HTML content
-            html_content = f"""<div id="Tampilan" data-testid="main-container">
+            html_content = f"""
+                    <div id="Tampilan" data-testid="main-container">
                     <div class="bagian-header" data-testid="header">
                         <img src="https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png" alt="logo" id="logo" data-testid="logo">
                     </div>
