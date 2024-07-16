@@ -205,7 +205,7 @@
 def main():
     import streamlit as st
     
-    # Custom CSS for slider
+    slider_style = """# Custom CSS for slider
      <style>
             input[type="range"] {
                 -webkit-appearance: none;
@@ -234,7 +234,7 @@ def main():
                 background-size: contain;
                 cursor: pointer;
             }
-            </style>
+    </style>
         """
     
     st.markdown(slider_style, unsafe_allow_html=True)
