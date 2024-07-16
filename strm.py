@@ -206,36 +206,35 @@ def main():
     import streamlit as st
     
     # Custom CSS for slider
-    slider_style = """
-        <style>
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 15px;
-            background: linear-gradient(90deg, #4caf50 0%, #2196f3 100%);
-            outline: none;
-            opacity: 0.9;
-            transition: opacity .15s ease-in-out;
-            cursor: url('https://example.com/cursor-image.png'), auto;  /* Replace with your cursor image URL */
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            background: url('https://example.com/slider-thumb.png') no-repeat;  /* Replace with your thumb image URL */
-            background-size: contain;
-            cursor: pointer;
-        }
-        input[type="range"]::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: url('https://example.com/slider-thumb.png') no-repeat;  /* Replace with your thumb image URL */
-            background-size: contain;
-            cursor: pointer;
-        }
-        </style>
+     <style>
+            input[type="range"] {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                height: 15px;
+                background: linear-gradient(90deg, #4caf50 0%, #2196f3 100%);
+                outline: none;
+                opacity: 0.9;
+                transition: opacity .15s ease-in-out;
+                cursor: url('kursor.png'), auto;  /* Replace with your cursor image URL */
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                background: url('kursor.png') no-repeat;  /* Replace with your thumb image URL */
+                background-size: contain;
+                cursor: pointer;
+            }
+            input[type="range"]::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                background: url('kursor.png') no-repeat;  /* Replace with your thumb image URL */
+                background-size: contain;
+                cursor: pointer;
+            }
+            </style>
         """
     
     st.markdown(slider_style, unsafe_allow_html=True)
