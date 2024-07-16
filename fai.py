@@ -71,7 +71,7 @@ def streamlit_app():
                  background-repeat: no-repeat;
                  background-size: cover;
                  text-align: center;
-                 height: 500px;
+                 height: 400px;
               }
               #logo {
                  width: 15%;
