@@ -202,10 +202,10 @@ def streamlit_app():
             </div>
             <script>
     setInterval(function() {
-        var ph_value = /* Logika untuk mengambil nilai pH terbaru dari MongoDB */;
+        var ph_value = {ph_value};
         document.getElementById("ph-slider").value = ph_value;
         document.getElementById("demo").textContent = ph_value;
-    }, 5000); // Update setiap 5 detik (5000 milidetik)
+    }, 5000); 
 </script>
 
             """
