@@ -219,7 +219,6 @@ def main():
             transition: opacity .15s ease-in-out;
             cursor: url('https://example.com/cursor-image.png'), auto;  /* Replace with your cursor image URL */
         }
-    
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -229,7 +228,6 @@ def main():
             background-size: contain;
             cursor: pointer;
         }
-    
         input[type="range"]::-moz-range-thumb {
             width: 25px;
             height: 25px;
