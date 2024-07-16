@@ -13,15 +13,9 @@ def streamlit_app():
 
     # Ambil data dari MongoDB
     def get_latest_ph():
-        latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1}).sort('waktu',-1).limit(1)
+        latest_data_cursor = collection.find({}, {'_id': 0, 'pH': 1}).sort('waktu', -1).limit(1)
         latest_data = list(latest_data_cursor)
         return latest_data[0]['pH'] if latest_data else None
-
-    # Load images
-    logo_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png"
-    icon_ph_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_pH.png"
-    icon_suhu_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_suhu_air.png"
-    icon_nutrisi_url = "https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/icon_tds.png"
 
     # CSS custom
     desain_css = """
@@ -80,8 +74,8 @@ def streamlit_app():
             text-align: center;
             margin: 20px;
         }
-        #icon_pH, #icon_suhu, #icon_nutrisi {
-            width: 25%;
+        .custom-text {
+            color: #ff6347; /* Warna teks: Tomato */
         }
         .bagian_ph, .bagian_suhu, .bagian_nutrisi {
             font-size: 24px;
@@ -143,80 +137,59 @@ def streamlit_app():
     """
     st.markdown(desain_css, unsafe_allow_html=True)
 
-    # Load initial pH value
-    ph_value = get_latest_ph()
+    while True:
+        # Load initial pH value
+        ph_value = get_latest_ph()
 
-    if ph_value is not None:
-        # HTML content
-        html_content = f"""<div id="Tampilan" data-testid="main-container">
-                <div class="bagian-header" data-testid="header">
-                    <img src="{logo_url}" alt="logo" id="logo" data-testid="logo">
-                </div>
-                <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
-                <div class="bagian-utama" data-testid="main-content">
-                    <div class="sensor" data-testid="sensor-ph">
-                        <img src="{icon_ph_url}" alt="icon_pH" id="icon_pH" data-testid="icon-ph" />
-                        <h2 class="custom-text">pH Air</h2>
-                        <div class="bagian_ph custom-text">
-                            <span class="value">{ph_value}</span>
-                            <span class="unit">pH</span>
+        if ph_value is not None:
+            # HTML content
+            html_content = f"""<div id="Tampilan" data-testid="main-container">
+                    <div class="bagian-header" data-testid="header">
+                        <img src="https://raw.githubusercontent.com/Yeahthu/tes-streamlit/main/logo%20fixx1.png" alt="logo" id="logo" data-testid="logo">
+                    </div>
+                    <h1 class="judul-overview custom-text" data-testid="overview-title">Ringkasan Hidroponik</h1>
+                    <div class="bagian-utama" data-testid="main-content">
+                        <div class="sensor" data-testid="sensor-ph">
+                            <h2 class="custom-text">pH Air</h2>
+                            <div class="bagian_ph custom-text">
+                                <span class="value">{ph_value}</span>
+                                <span class="unit">pH</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="sensor" data-testid="sensor-suhu">
-                        <img src="{icon_suhu_url}" alt="icon_suhu" id="icon_suhu" data-testid="icon-suhu" /> 
-                        <h2 class="custom-text">Suhu Air</h2>
-                        <div class="bagian_suhu custom-text">
-                            <span class="value">{suhu_value}</span>
-                            <span class="unit">°C</span>
-                        </div>
-                    </div>
-                    <div class="sensor" data-testid="sensor-nutrisi">
-                        <img src="{icon_nutrisi_url}" alt="icon_nutrisi" id="icon_nutrisi" data-testid="icon-nutrisi" />
-                        <h2 class="custom-text">Nutrisi</h2>
-                        <div class="bagian_nutrisi custom-text">
-                            <span class="value">{nutrisi_value}</span>
-                            <span class="unit">ppm</span>
-                        </div>
-                    </div>
-                </div>
-                <h1 class="status-hidroponik custom-text" data-testid="status-title">Status hidroponik</h1>
-                <div class="bagian-akhir" data-testid="footer">
-                    <div class="batas-ph" data-testid="ph-boundary">
-                        <h1 class="batas-text custom-text">Batas pH</h1>
-                        <div class="ph-labels custom-text">
-                            <div class="ph-label">Kadar rendah</div>
-                            <div class="ph-label">Kadar sesuai</div>
-                            <div class="ph-label">Kadar tinggi</div>
-                        </div>
-                        <div class="ph-labels custom-text">
-                            <div class="ph-label">[1-4]</div>
-                            <div class="ph-label">[5-7]</div>
-                            <div class="ph-label">[8-14]</div>
-                        </div>
-                        <p class="custom-text">pH tanamanmu: <span id="demo">{ph_value}</span></p>
-                        <div class="ph-slider">
-                            <input type="range" min="1.0" max="14.0" step="0.1" value="{ph_value}" class="slider" disabled id="ph-slider">
+                    <h1 class="status-hidroponik custom-text" data-testid="status-title">Status hidroponik</h1>
+                    <div class="bagian-akhir" data-testid="footer">
+                        <div class="batas-ph" data-testid="ph-boundary">
+                            <h1 class="batas-text custom-text">Batas pH</h1>
+                            <div class="ph-labels custom-text">
+                                <div class="ph-label">Kadar rendah</div>
+                                <div class="ph-label">Kadar sesuai</div>
+                                <div class="ph-label">Kadar tinggi</div>
+                            </div>
+                            <div class="ph-labels custom-text">
+                                <div class="ph-label">[1-4]</div>
+                                <div class="ph-label">[5-7]</div>
+                                <div class="ph-label">[8-14]</div>
+                            </div>
+                            <p class="custom-text">pH tanamanmu: <span id="demo">{ph_value}</span></p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <script>
-    setInterval(function() {
-        var ph_value = {ph_value};
-        document.getElementById("ph-slider").value = ph_value;
-        document.getElementById("demo").textContent = ph_value;
-    }, 5000); 
-</script>
+                <script>
+        setInterval(function() {{
+            var ph_value = {ph_value};
+            document.getElementById("demo").textContent = ph_value;
+        }}, 5000); 
+        </script>
+                """
 
-            """
+            st.markdown(html_content, unsafe_allow_html=True)
 
-        st.markdown(html_content, unsafe_allow_html=True)
+            # Delay sebelum mengambil data terbaru lagi
+            time.sleep(10)
 
-        # Delay sebelum mengambil data terbaru lagi
-        time.sleep(10)
-
-    else:
-        st.write('Tidak ada data pH yang tersedia saat ini.')
+        else:
+            st.write('Tidak ada data pH yang tersedia saat ini.')
 
 if __name__ == "__main__":
     # Jalankan Streamlit
